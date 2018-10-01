@@ -21,6 +21,10 @@ class User extends Model {
     })
   }
 
+  tasks () {
+    return this.hasMany('App/Models/Task')
+  }
+
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or
