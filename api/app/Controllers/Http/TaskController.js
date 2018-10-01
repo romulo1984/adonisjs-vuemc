@@ -11,9 +11,10 @@ class TaskController {
    * GET tasks
    */
   async index ({ auth }) {
-    const user = await auth.getUser()
+    //const user = await auth.getUser()
 
-    return user.tasks().fetch()
+    //return user.tasks().fetch()
+    return await Task.all()
   }
 
   /**

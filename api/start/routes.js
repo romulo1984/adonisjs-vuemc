@@ -26,4 +26,4 @@ Route.group(() => {
   Route.resource('tasks', 'TaskController')
 })
 .prefix('api')
-.middleware('auth')
+//.middleware('auth')
