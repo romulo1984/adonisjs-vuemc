@@ -1,15 +1,21 @@
-import { Model } from 'vue-mc'
+import BaseModel from './BaseModel'
+import {
+  boolean,
+  equal,
+  integer,
+  min,
+} from 'vue-mc/validation'
 
 /**
 * Task model
 */
-export default class TaskModel extends Model {
+export default class TaskModel extends BaseModel {
 
   // Default attributes that define the "empty" state.
   defaults() {
     return {
-      id:   null,
-      name: '',
+      id: null,
+      title: '',
       done: false,
     }
   }
@@ -17,8 +23,8 @@ export default class TaskModel extends Model {
   // Attribute mutations.
   mutations() {
     return {
-      id:   (id) => Number(id) || null,
-      name: String,
+      id: (id) => Number(id) || null,
+      title: String,
       done: Boolean,
     }
   }
@@ -26,8 +32,8 @@ export default class TaskModel extends Model {
     // Attribute validation
   validation() {
     return {
-      id:   integer.and(min(1)).or(equal(null)),
-      name: string.and(required),
+      id: integer.and(min(1)).or(equal(null)),
+      title: String,
       done: boolean,
     }
   }
@@ -35,8 +41,8 @@ export default class TaskModel extends Model {
   // Route configuration
   routes() {
     return {
-      fetch: `${BASE_API}tasks/{id}`,
-      save: `${BASE_API}tasks`,
+      fetch: 'tasks/{id}',
+      save: 'tasks',
     }
-}
+  }
 }

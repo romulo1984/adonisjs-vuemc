@@ -1,10 +1,10 @@
-import { Collection } from 'vue-mc'
+import BaseCollection from './BaseCollection'
 import TaskModel from '../Models/TaskModel'
 
 /**
 * Task model
 */
-export default class TaskCollection extends Collection {
+export default class TaskCollection extends BaseCollection {
 
   // Model that is contained in this collection.
   model() {
@@ -14,14 +14,14 @@ export default class TaskCollection extends Collection {
   // Default attributes
   defaults() {
     return {
-        orderBy: 'name',
+        orderBy: 'title',
     }
   }
 
   // Route configuration
   routes() {
       return {
-        fetch: `${BASE_API}tasks`,
+        fetch: 'tasks',
       }
   }
 
@@ -33,25 +33,5 @@ export default class TaskCollection extends Collection {
   // Will be `true` if all tasks have been completed.
   get done() {
     return this.todo == 0;
-  }
-
-  coiso() {
-    let config = {
-      url: `${BASE_API}tasks`,
-      method: 'get',
-      // data
-      // params
-      headers: {
-        Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTUzODM1NjMzMn0.9JIzGYtK1WZg81u4VIu1N5nmvo4_mAwTjEV8GGPyPaQ',
-      }
-    }
-
-    return this.getRequest(config)
-      .send()
-      .then((res) => {
-          return res
-      }).catch((error) => {
-          return error
-      })
   }
 }
